@@ -21,4 +21,4 @@ jobs:
 
       - name: Deploy to DigitalOcean
         run: |
-          ssh -o StrictHostKeyChecking=no root@134.122.123.133 "cd /var/www/html && git pull origin main && npm install && npm run build && systemctl restart nginx"
+          ssh -o StrictHostKeyChecking=no root@134.122.123.133 "cd /var/www/html/pneumatize.com/public_html && git pull origin main && npm install && npm run build && systemctl restart nginx"

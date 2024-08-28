@@ -13,11 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup ssh
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: Deploy to DigitalOcean
         run: |
           ssh root@134.122.123.133 "cd /var/www/html && git pull origin main && npm install && npm run build && systemctl restart nginx"
+
+GITHUB_TOKEN: ${{ secrets.SSH_PRIVATE_KEY }}

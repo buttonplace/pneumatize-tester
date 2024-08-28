@@ -14,11 +14,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
+        uses: webfactory/ssh-agent@v0.5.0
         with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to DigitalOcean
         run: |
-          ssh root@134.122.123.133 "cd /var/www/html && git pull origin main && npm install && npm run build && systemctl restart nginx"
+          ssh -o StrictHostKeyChecking=no root@134.122.123.133 "cd /var/www/html && git pull origin main && npm install && npm run build && systemctl restart nginx"
